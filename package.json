@@ -13,6 +13,8 @@
     },
     "dependencies": {
         "express": "*",
-        "body-parser": "*"
+        "body-parser": "*",
+        "express-fileupload":"*",
+        "mv":"*"
     }
 }

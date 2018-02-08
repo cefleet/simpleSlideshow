@@ -1,3 +1,4 @@
+var slideTime = 10000;
 var AJAX = function(url,returnFunction){
     var x=new XMLHttpRequest()
     x.onload=function(){
@@ -9,6 +10,19 @@ var AJAX = function(url,returnFunction){
     x.setRequestHeader('Content-Type', 'application/json');
     x.send()
 }
+/*
+var UPLOAD = function(url,returnFunction){
+    var x=new XMLHttpRequest()
+    x.onload=function(){
+      if (x.status === 200) {
+        returnFunction(JSON.parse(x.responseText))
+      }
+    };
+    x.open('POST',url,true);
+    x.setRequestHeader('Content-Type', 'multipart/form-data');
+    x.send()
+}
+*/
 
 AJAX("/images",function(d){
   runSlideShow(d);
@@ -32,6 +46,6 @@ function runSlideShow(data){
     });
   };
 
-  var intervalID = window.setInterval(changeSlide, 10000);
+  var intervalID = window.setInterval(changeSlide, slideTime);
 
 }
