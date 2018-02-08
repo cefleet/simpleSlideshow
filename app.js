@@ -1,27 +1,12 @@
 var fs = require('fs');
 var express = require('express');
-//var bodyParser = require('body-parser');
 var app = express()
-
-/*app.use(bodyParser.json());       // to support JSON-encoded bodies
-app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
-  extended: true
-}));
-*/
+process.chdir(__dirname);
 app.use(express.static('public'))
 
-app.get("/images/",function(req,res){
-/*
-  if(req.params.action != null){
-    res.send(JSON.stringify(req.returnData))
-  } else {
-    res.send("No Data")
-  }
-  */
+app.get("/images",function(req,res){
   fs.readdir("public/images/", function(err, items) {
-    //console.log(items);
-    //TODO if it is not a jpg or png ignore it
-    res.send(JSON.stringify(items))
+     res.send(JSON.stringify(items))
   });
 
 });
