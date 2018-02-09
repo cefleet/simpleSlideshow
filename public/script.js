@@ -1,4 +1,3 @@
-var slideTime = 10000;
 var AJAX = function(url,returnFunction){
     var x=new XMLHttpRequest()
     x.onload=function(){
@@ -10,28 +9,16 @@ var AJAX = function(url,returnFunction){
     x.setRequestHeader('Content-Type', 'application/json');
     x.send()
 }
-/*
-var UPLOAD = function(url,returnFunction){
-    var x=new XMLHttpRequest()
-    x.onload=function(){
-      if (x.status === 200) {
-        returnFunction(JSON.parse(x.responseText))
-      }
-    };
-    x.open('POST',url,true);
-    x.setRequestHeader('Content-Type', 'multipart/form-data');
-    x.send()
-}
-*/
-
+var intervalID;
+var slideTime;
 AJAX("/images",function(d){
   runSlideShow(d);
 });
 
 function runSlideShow(data){
   var slideView = document.getElementsByTagName("HTML")[0];
-  var onSlide = 0;
-  slideView.style.background = "url(images/"+data[onSlide]+") no-repeat center center fixed #000";
+  var onSlide = -1;
+//  slideView.style.background = "url(images/"+data[onSlide]+") no-repeat center center fixed #000";
 
 
   function changeSlide(){
@@ -44,8 +31,17 @@ function runSlideShow(data){
     AJAX("/images",function(d){
       data = d;
     });
+    AJAX("/getdisplaylength", function(d){
+      if(d[0] != slideTime){
+        slideTime = Number(d[0]);
+        window.clearInterval(intervalID);
+        intervalID = window.setInterval(changeSlide, slideTime*1000);
+      }
+
+    });
   };
 
-  var intervalID = window.setInterval(changeSlide, slideTime);
+  changeSlide();
+  //intervalID = window.setInterval(changeSlide, slideTime*1000);
 
 }

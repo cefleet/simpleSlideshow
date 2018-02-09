@@ -11,6 +11,7 @@
   <title>YMCA Slideshow:Admin</title>
 </head>
 <body>
+  <h1>Slideshow Manager</h1>
   <iframe src="form.html" height="100px" width="100%" frameBorder="0" id="formFrame">
     Alternate text if the iframe cannot be rendered
 </iframe>
@@ -19,6 +20,16 @@
   <div id="setDelay">
     <label for="delay">Set Delay (in seconds)</label>
     <input id="delay" /> <span class="button" id="saveDelay">Save</span>
+  </div>
+</div>
+<div id="images">
+  <div id="activeImages">
+    <h2>Active Images</h2>
+    <div id="activeList"></div>
+  </div>
+  <div id="archivedImages">
+    <h2>Archived Images</h2>
+    <div id="archivedList"></div>
   </div>
 </div>
 </body>
