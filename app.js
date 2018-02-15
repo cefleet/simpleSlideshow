@@ -88,7 +88,7 @@ app.post("/upload",function(req,res){
     return res.status(400).send(JSON.stringify(['No files were uploaded.']));
 
   // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
-  let image = req.files.image;
+  var image = req.files.image;
   // Use the mv() method to place the file somewhere on your server
   image.mv('public/images/'+image.name, function(err) {
     if (err)

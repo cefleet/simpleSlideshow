@@ -16,7 +16,7 @@ AJAX("/images",function(d){
 });
 
 function runSlideShow(data){
-  var slideView = document.getElementsByTagName("HTML")[0];
+  //var slideView = document.getElementsByTagName("HTML")[0];
   var onSlide = -1;
 //  slideView.style.background = "url(images/"+data[onSlide]+") no-repeat center center fixed #000";
 
@@ -26,7 +26,12 @@ function runSlideShow(data){
     if(onSlide > data.length-1){
       onSlide = 0;
     }
-    slideView.style.background = "url(images/"+data[onSlide]+") no-repeat center center fixed #000";
+    var image = document.getElementById("image");
+    image.innerHTML = "";
+    var img = document.createElement("img");
+    img.src = "images/"+data[onSlide];
+    image.appendChild(img);
+    //slideView.style.background = "url(images/"+data[onSlide]+") no-repeat center center fixed #000";
     //this checks to see if there are any new images
     AJAX("/images",function(d){
       data = d;

@@ -1,7 +1,21 @@
-html {
-    background-color: #000;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+body {
+  padding: 0;
+  margin:0;
+  background-color: #000;
+}
+
+#image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    height:100vh;
+    width:100vw;
+}
+#image img {
+    flex-shrink: 0;
+    /*min-width: 100%;
+    min-height: 100%;*/
+    overflow: hidden;
+
 }
