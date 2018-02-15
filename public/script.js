@@ -26,11 +26,21 @@ function runSlideShow(data){
     if(onSlide > data.length-1){
       onSlide = 0;
     }
-    var image = document.getElementById("image");
-    image.innerHTML = "";
-    var img = document.createElement("img");
-    img.src = "images/"+data[onSlide];
-    image.appendChild(img);
+    if(!document.getElementById(data[onSlide])){
+      var image = document.getElementById("image");
+      var img = document.createElement("img");
+      img.src = "images/"+data[onSlide];
+      img.id = data[onSlide];
+      image.appendChild(img);
+    }
+
+    var images = document.getElementsByTagName("img");
+    for(var i = 0; i < images.length; i++){
+      images[i].classList.add("hidden");
+    }
+    document.getElementById(data[onSlide]).classList.remove("hidden");
+
+
     //slideView.style.background = "url(images/"+data[onSlide]+") no-repeat center center fixed #000";
     //this checks to see if there are any new images
     AJAX("/images",function(d){
